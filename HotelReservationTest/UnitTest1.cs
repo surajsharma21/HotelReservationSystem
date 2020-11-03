@@ -1,3 +1,4 @@
+using HotelReservationSystem;
 using NUnit.Framework;
 
 namespace HotelReservationTest
@@ -10,9 +11,19 @@ namespace HotelReservationTest
         }
 
         [Test]
-        public void Test1()
+        public void AddHotelTest()
         {
-            Assert.Pass();
+            Hotel hotel = new Hotel(HotelType.RIDGEWOOD);
+            double expectedRate = 220;
+            Assert.AreEqual(expectedRate, hotel.RATE);
+        }
+        [Test]
+        public void FindCheapestHotelTest()
+        {
+            HotelService service = new HotelService();
+            HotelType hotel = service.FindCheapestHotel("2018-01-01", "2018-01-03");
+            HotelType expected = HotelType.LAKEWOOD;
+            Assert.AreEqual(hotel, expected);
         }
     }
 }
