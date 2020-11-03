@@ -25,5 +25,13 @@ namespace HotelReservationTest
             HotelType expected = HotelType.BRIDGEWOOD;
             Assert.AreEqual(hotel, expected);
         }
+        [Test]
+        public void FindBestRatedHotelTest_ShouldReturnRidgeWood()
+        {
+            HotelService service = new HotelService();
+            HotelType hotel = service.FindBestRatedHotel("2020-09-11", "2020-09-12");
+            HotelType expected = HotelType.RIDGEWOOD;
+            Assert.AreEqual(hotel, expected);
+        }
     }
 }
