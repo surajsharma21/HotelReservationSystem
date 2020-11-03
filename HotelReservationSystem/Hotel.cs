@@ -9,7 +9,8 @@ namespace HotelReservationSystem
         //Hotel Name
         HotelType type;
         //Rate for Regular Customer
-        public double RATE { get; }
+        public double WEEKDAY_RATE { get; }
+        public double WEEKEND_RATE { get; }
         public Hotel(HotelType hotelType)
         {
             this.type = hotelType;
@@ -17,15 +18,18 @@ namespace HotelReservationSystem
             {
                 if (hotelType.Equals(HotelType.LAKEWOOD))
                 {
-                    this.RATE = 110;
+                    this.WEEKDAY_RATE = 110;
+                    this.WEEKEND_RATE = 90;
                 }
                 if (hotelType.Equals(HotelType.BRIDGEWOOD))
                 {
-                    this.RATE = 150;
+                    this.WEEKDAY_RATE = 150;
+                    this.WEEKEND_RATE = 50;
                 }
                 if (hotelType.Equals(HotelType.RIDGEWOOD))
                 {
-                    this.RATE = 220;
+                    this.WEEKDAY_RATE = 220;
+                    this.WEEKEND_RATE = 150;
                 }
             }
             catch (HotelReservationException)
@@ -40,9 +44,13 @@ namespace HotelReservationSystem
             {
                 DateTime startDate = Convert.ToDateTime(startDateString);
                 DateTime endDate = Convert.ToDateTime(endDateString);
-                //Finding Day Difference Between Dates
-                int days = (int)((endDate - startDate).TotalDays);
-                TotalCost = days * this.RATE;
+                for (; startDate <= endDate; startDate = startDate.AddDays(1))
+                {
+                    if (startDate.DayOfWeek == DayOfWeek.Saturday || startDate.DayOfWeek == DayOfWeek.Sunday)
+                        TotalCost += WEEKEND_RATE;
+                    else
+                        TotalCost += WEEKDAY_RATE;
+                }
             }
             catch (Exception)
             {
