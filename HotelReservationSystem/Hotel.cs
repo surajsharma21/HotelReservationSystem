@@ -7,8 +7,7 @@ namespace HotelReservationSystem
     public class Hotel
     {
         //Hotel Name
-        HotelType type;
-        //Rate for Regular Customer
+        public HotelType type { get; set; }
         public double WEEKDAY_RATE { get; }
         public double WEEKEND_RATE { get; }
         public double RATING { get; }
@@ -86,6 +85,7 @@ namespace HotelReservationSystem
                 throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_HOTEL_TYPE, "Invalid Hotel Type");
             }
         }
+        public Hotel() { }
         public double FindTotalCost(string startDateString, string endDateString)
         {
             double TotalCost = 0;
