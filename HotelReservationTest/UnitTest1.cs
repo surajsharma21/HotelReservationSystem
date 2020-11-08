@@ -13,7 +13,7 @@ namespace HotelReservationTest
         [Test]
         public void AddHotelTest()
         {
-            Hotel hotel = new Hotel(HotelType.RIDGEWOOD);
+            Hotel hotel = new Hotel(HotelType.RIDGEWOOD, CustomerType.NORMAL);
             double expectedRate = 220;
             Assert.AreEqual(expectedRate, hotel.WEEKDAY_RATE);
         }
